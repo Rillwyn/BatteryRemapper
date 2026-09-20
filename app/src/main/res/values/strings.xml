@@ -7,6 +7,9 @@
     <string name="app_version_default">v1.0</string>
     <string name="app_version_format">v%1$s</string>
 
+    <!-- Module description, shown by the Xposed framework -->
+    <string name="module_description">Displays a configurable physical battery range as 0-100%, with optional Battery Saver and low-battery shutdown automation.</string>
+
 
     <!-- SystemUI hook status -->
     <string name="section_status">MODULE STATUS</string>
@@ -27,7 +30,14 @@
     <string name="section_remapping">BATTERY REMAPPING</string>
 
     <string name="remapper_title">Enable battery remapping</string>
-    <string name="remapper_description">Displays the physical 20–80% battery range as 0–100%. Turn this off to show the original battery percentage.</string>
+    <string name="remapper_description">Stretches the physical range chosen below onto the displayed 0–100% scale. Turn this off to show the original battery percentage.</string>
+
+    <string name="remapping_range_title">Mapping range</string>
+    <string name="remapping_range_description">Which physical battery range the display stretches onto 0–100%.</string>
+
+    <string name="map_range_value_format">%1$d%% – %2$d%% physical</string>
+    <string name="map_range_content_description">Mapping range: lower bound %1$d%%, upper bound %2$d%%</string>
+    <string name="map_preview_format">Physical %1$d%% → 0%%　·　Physical %2$d%% → 100%%</string>
 
 
     <!-- Automation -->
@@ -37,9 +47,23 @@
     <string name="battery_saver_description">Turns Battery Saver on at 20% displayed battery and turns it off above 50%. Battery Saver remains off while charging.</string>
 
     <string name="auto_shutdown_title">Low-battery shutdown</string>
-    <string name="auto_shutdown_description">Starts a 30-second shutdown countdown at 20% physical battery. Connecting a charger cancels the countdown.</string>
+    <string name="auto_shutdown_description">Starts a 30-second shutdown countdown at the displayed level set below. Connecting a charger cancels the countdown.</string>
+
+    <string name="shutdown_trigger_title">Countdown trigger</string>
+    <string name="shutdown_trigger_description">The countdown starts at or below this level. 0% is the original behaviour.</string>
+    <string name="shutdown_trigger_value_format">%1$d%% displayed ≈ %2$d%% physical</string>
 
     <string name="settings_note">Battery Saver and shutdown automation are available only while battery remapping is enabled.</string>
+
+
+    <!-- Shutdown countdown dialog -->
+    <!--
+        Deliberately carries both languages in one string: System UI raises this from its own
+        process, where the app's language does not apply, so showing both guarantees the warning
+        is readable whatever the system language is.
+    -->
+    <string name="shutdown_dialog_title">Battery depleted / 电量耗尽</string>
+    <string name="shutdown_dialog_message">Device will shut down in %1$d seconds.\nPlug in the charger to cancel.\n\n设备将在 %1$d 秒后关机。\n插入充电器即可取消。</string>
 
 
     <!-- Manual SystemUI restart -->
@@ -56,20 +80,14 @@
     <string name="restart_system_ui_busy">A System UI restart is already in progress.</string>
 
 
-    <!-- Main-toggle refresh prompt -->
-    <string name="system_ui_refresh_required_title">Restart required</string>
+    <!-- Main-toggle prompt -->
+    <string name="system_ui_refresh_required_title">Change applied</string>
 
-    <string name="remapper_enabled_refresh_message">Battery remapping is now enabled. Restart System UI to apply the remapped percentage.</string>
+    <string name="remapper_enabled_refresh_message">Battery remapping is now enabled. The status bar updates on its own; restart System UI only if the percentage does not change.</string>
 
-    <string name="remapper_disabled_refresh_message">Battery remapping is now disabled. Restart System UI to restore the original battery percentage.</string>
+    <string name="remapper_disabled_refresh_message">Battery remapping is now disabled. The status bar updates on its own; restart System UI only if the percentage does not change.</string>
 
     <string name="restart_system_ui_now">Restart now</string>
     <string name="restart_system_ui_later">Later</string>
-
-
-    <!-- Recommended LSPosed scope -->
-    <string-array name="xposedscope">
-        <item>com.android.systemui</item>
-    </string-array>
 
 </resources>

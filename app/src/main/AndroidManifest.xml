@@ -3,12 +3,19 @@
 
     <application
         android:allowBackup="false"
+        android:description="@string/module_description"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.BatteryRemapper">
 
+        <!--
+            A modern Xposed API module carries no xposed meta-data: the module name comes from
+            android:label, the description from android:description, the entry point from
+            META-INF/xposed/java_init.list, the scope from META-INF/xposed/scope.list and the
+            API requirements from META-INF/xposed/module.prop.
+        -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -23,22 +30,6 @@
             android:authorities="com.github.dhangofa.batteryremapper.settings"
             android:enabled="true"
             android:exported="true" />
-        
-        <meta-data
-            android:name="xposedmodule"
-            android:value="true" />
-            
-        <meta-data
-            android:name="xposedscope"
-            android:resource="@array/xposedscope" />
-            
-        <meta-data
-            android:name="xposeddescription"
-            android:value="Remaps system UI battery scale from physical 20%-80% into 0%-100% display layer." />
-            
-        <meta-data
-            android:name="xposedminversion"
-            android:value="82" />
     </application>
 
 </manifest>
